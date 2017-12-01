@@ -9,13 +9,14 @@ import android.widget.ListView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Home extends AppCompatActivity {
+public class HomeActivity extends AppCompatActivity {
 
     private int i = 1;
     private ListView listView;
     private Button buttonAdd;
     private Button buttonDelAll;
-    private List<String> movies = new ArrayList<>();
+    private List<String> movies;
+    MovieListAdapter movieListAdapter = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,18 +26,24 @@ public class Home extends AppCompatActivity {
         listView            = findViewById(R.id.activity_home_list_view);
         buttonAdd           = findViewById(R.id.activity_home_button_add);
         buttonDelAll        = findViewById(R.id.activity_home_button_delete_all);
+
+        movies = new ArrayList<>();
+        movieListAdapter = new MovieListAdapter(this, movies);
+
+
     }
 
 
     @Override
     protected void onStart() {
         super.onStart();
+
         buttonAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 movies.add("Film " +i);
-                ArrayAdapter<String> coursesAdapter = new ArrayAdapter<>(Home.this, android.R.layout.simple_list_item_1, movies);
-                listView.setAdapter(coursesAdapter);
+                //ArrayAdapter<String> coursesAdapter = new ArrayAdapter<>(HomeActivity.this, android.R.layout.simple_list_item_1, movies);
+                listView.setAdapter(movieListAdapter);
                 i++;
             }
         });
@@ -45,8 +52,8 @@ public class Home extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 movies.removeAll(movies);
-                ArrayAdapter<String> coursesAdapter = new ArrayAdapter<>(Home.this, android.R.layout.simple_list_item_1, movies);
-                listView.setAdapter(coursesAdapter);
+                //ArrayAdapter<String> coursesAdapter = new ArrayAdapter<>(HomeActivity.this, android.R.layout.simple_list_item_1, movies);
+                listView.setAdapter(movieListAdapter);
                 i = 1;
             }
         });
