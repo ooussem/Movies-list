@@ -1,4 +1,4 @@
-package fr.app.course;
+package fr.app.movies;
 
 import org.junit.Test;
 

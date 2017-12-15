@@ -1,4 +1,4 @@
-package fr.app.course;
+package fr.app.movies;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
